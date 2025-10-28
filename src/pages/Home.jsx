@@ -2,6 +2,7 @@ import React from 'react';
 import SearchBox from './../components/SearchBox';
 import Listing from './../components/Listing';
 import SeeMore from './../components/SeeMore';
+import Slideshow from './../components/SlideShow';
 import "../css/Home.css"
 
 const Home = () => 
@@ -20,6 +21,7 @@ const Home = () =>
       <section className="top">
         <div className="top-content">
           <SearchBox />
+          <Slideshow />
         </div>
       </section>
 
