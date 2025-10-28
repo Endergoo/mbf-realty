@@ -1,0 +1,44 @@
+.main-content 
+{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+.content-section 
+{
+    margin-bottom: 80px;
+}
+
+.section-title 
+{
+    color: #f0a500;
+    font-size: 48px;
+    font-weight: normal;
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 60px;
+}
+
+.text-block 
+{
+    background-color: #666666;
+    padding: 40px;
+    border-radius: 8px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.text-block p 
+{
+    color: #000000;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.text-block p:last-child 
+{
+    margin-bottom: 0;
+}
+
