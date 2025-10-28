@@ -1,0 +1,123 @@
+.listings-page 
+{
+  min-height: 100vh;
+  padding: 2rem;
+  background: #000;
+  margin-top: 80px; 
+}
+
+.listings-content 
+{
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.page-title 
+{
+  color: #f0a500;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.filter-section 
+{
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 15px;
+  margin-bottom: 3rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.filter-row 
+{
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.filter-input, .filter-select 
+{
+  padding: 0.8rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  min-width: 180px;
+  background: white;
+}
+
+.filter-input 
+{
+  flex: 1;
+  min-width: 250px;
+}
+
+.filter-input:focus, .filter-select:focus
+{
+  border-color: #f0a500;
+}
+
+.apply-btn 
+{
+  background: #f0a500;
+  color: #000;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.apply-btn:hover 
+{
+  background: #d4940a;
+}
+
+.results-count 
+{
+  color: #fff;
+  text-align: center;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.listings-grid 
+{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+@media (max-width: 768px) 
+{
+  .listings-page 
+  {
+    margin-top: 70px;
+    padding: 1.5rem 1rem;
+  }
+
+  .page-title 
+  {
+    font-size: 2rem;
+  }
+
+  .filter-row 
+  {
+    flex-direction: column;
+  }
+
+  .filter-input, .filter-select 
+  {
+    min-width: 100%;
+  }
+
+  .listings-grid 
+  {
+    grid-template-columns: 1fr;
+  }
+}

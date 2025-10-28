@@ -1,0 +1,14 @@
+import { Outlet } from "react-router-dom";
+import Navigation from "./components/Navigation";
+
+const Layout = () => 
+{
+  return (
+    <div id="content">
+      <Navigation />
+      <Outlet />
+    </div>
+  );
+};
+
+export default Layout;

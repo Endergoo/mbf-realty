@@ -1,0 +1,147 @@
+.navbar 
+{
+  background-color: #000000;
+  padding: 1rem 0;
+  border-bottom: 2px solid #f0a500;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.nav-container 
+{
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.nav-header 
+{
+  display: none;
+}
+
+.mobile-nav 
+{
+  display: none;
+}
+
+.nav-link 
+{
+  color: #f0a500;
+  text-decoration: none;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  font-weight: 500;
+}
+
+.nav-link:hover, .nav-link.active 
+{
+  color: #fff;
+}
+
+.logo 
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.logo-img 
+{
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+}
+
+.hamburger 
+{
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.hamburger span 
+{
+  width: 25px;
+  height: 3px;
+  background-color: #f0a500;
+  margin: 3px 0;
+  transition: 0.3s;
+  border-radius: 2px;
+}
+
+.hamburger.active span:nth-child(1) 
+{
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger.active span:nth-child(2) 
+{
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) 
+{
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
+@media (max-width: 768px) 
+{
+  .navbar 
+  {
+    padding: 0.5rem 0;
+  }
+
+  .nav-container 
+  
+  {
+    flex-direction: column;
+    gap: 0;
+    padding: 0 15px;
+  }
+
+  .nav-container > .nav-link, .nav-container > .logo 
+  {
+    display: none;
+  }
+
+  .nav-header 
+  {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .hamburger 
+  {
+    display: flex;
+  }
+
+  .mobile-nav 
+  {
+    display: none !important;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    padding: 20px;
+    border-top: 1px solid #f0a500;
+    background: #000000;
+  }
+
+  .mobile-nav.active 
+  {
+    display: flex !important;
+  }
+}
