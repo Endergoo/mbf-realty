@@ -7,6 +7,7 @@
   top: 0;
   left: 0;
   width: 100%;
+  z-index: 9999;
 }
 
 .nav-container 
@@ -34,9 +35,6 @@
   color: #f0a500;
   text-decoration: none;
   font-size: 18px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
   cursor: pointer;
   transition: color 0.3s ease;
   font-weight: 500;
@@ -52,22 +50,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
 }
 
 .logo-img 
 {
-  height: 75px;
+  height: 50px;
   width: auto;
   object-fit: contain;
 }
 
+/* Hamburger Menu Styles */
 .hamburger 
 {
   display: none;
   flex-direction: column;
   cursor: pointer;
   padding: 5px;
+  z-index: 10000;
 }
 
 .hamburger span 
@@ -80,6 +79,7 @@
   border-radius: 2px;
 }
 
+/* Hamburger Animation - X shape when active */
 .hamburger.active span:nth-child(1) 
 {
   transform: rotate(-45deg) translate(-5px, 6px);
@@ -95,29 +95,30 @@
   transform: rotate(45deg) translate(-5px, -6px);
 }
 
+/* Mobile Responsive Styles */
 @media (max-width: 768px) 
 {
-  .navbar 
-  {
+  .navbar {
     padding: 0.5rem 0;
   }
 
   .nav-container 
-  
   {
     flex-direction: column;
     gap: 0;
     padding: 0 15px;
   }
 
+  /* Hide desktop navigation on mobile */
   .nav-container > .nav-link, .nav-container > .logo 
   {
     display: none;
   }
 
+  /* Show mobile navigation header */
   .nav-header 
   {
-    display: flex;
+    display: flex !important;
     justify-content: space-between;
     align-items: center;
     width: 100%;
@@ -129,19 +130,36 @@
     display: flex;
   }
 
+  /* Mobile navigation links styling */
   .mobile-nav 
   {
-    display: none;
+    display: none !important;
     flex-direction: column;
     gap: 15px;
     width: 100%;
     padding: 20px;
     border-top: 1px solid #f0a500;
     background: #000000;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
   }
 
   .mobile-nav.active 
   {
-    display: flex;
+    display: flex !important;
+    max-height: 500px;
+  }
+
+  /* Mobile nav links */
+  .mobile-nav .nav-link 
+  {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(240, 165, 0, 0.2);
+  }
+
+  .mobile-nav .nav-link:last-child 
+  {
+    border-bottom: none;
   }
 }

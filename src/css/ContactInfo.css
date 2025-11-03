@@ -1,0 +1,27 @@
+.contact-info 
+{
+    margin-top: 40px;
+}
+  
+  .email 
+{
+    color: #f0a500;
+    font-size: 24px;
+    font-weight: normal;
+}
+  
+  .phone 
+{
+    padding-top: 10px;
+    color: #f0a500;
+    font-size: 24px;
+    font-weight: normal;
+}
+  
+  @media (max-width: 480px) 
+{
+    .email, .phone 
+    {
+      font-size: 18px;
+    }
+}

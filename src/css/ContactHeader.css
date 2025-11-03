@@ -1,0 +1,30 @@
+.contact-header 
+{
+    margin-bottom: 40px;
+}
+  
+  .contact-title 
+{
+    color: #f0a500;
+    font-size: 72px;
+    font-weight: normal;
+    line-height: 1;
+    margin-bottom: 60px;
+}
+  
+  @media (max-width: 768px) 
+{
+    .contact-title 
+    {
+      font-size: 48px;
+      margin-bottom: 40px;
+    }
+}
+  
+  @media (max-width: 480px) 
+{
+    .contact-title 
+    {
+      font-size: 36px;
+    }
+}
