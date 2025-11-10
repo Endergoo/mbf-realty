@@ -1,39 +1,101 @@
-import React from 'react';
-import SearchBox from './../components/SearchBox';
+import React, { useState, useEffect } from 'react';
+import SlideShow from './../components/SlideShow';
+import SearchBox from './../components/SearchBox'; // Add this import
 import Listing from './../components/Listing';
-import SeeMore from './../components/SeeMore';
-import Slideshow from './../components/SlideShow';
-import "../css/Home.css"
+import HouseMod from './../components/HouseMod';
 
-const Home = () => 
-{
-  const featuredListings = [
-    { id: 1, price: 350000, beds: 3, baths: 2, sqft: 1800, status: 'Available', address: '123 Oak Street, Springfield, IL 62701', image: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=500&h=300&fit=crop' },
-    { id: 2, price: 275000, beds: 2, baths: 2, sqft: 1400, status: 'Available', address: '456 Pine Avenue, Madison, WI 53703', image: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=500&h=300&fit=crop' },
-    { id: 3, price: 525000, beds: 4, baths: 3, sqft: 2500, status: 'Available', address: '789 Maple Drive, Columbus, OH 43215', image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500&h=300&fit=crop' },
-    { id: 4, price: 425000, beds: 3, baths: 2.5, sqft: 2100, status: 'Available', address: '321 Elm Street, Nashville, TN 37201', image: null },
-    { id: 5, price: 185000, beds: 2, baths: 1, sqft: 1200, status: 'Available', address: '654 Cedar Lane, Richmond, VA 23220', image: null },
-    { id: 6, price: 680000, beds: 5, baths: 4, sqft: 3200, status: 'Available', address: '987 Birch Court, Atlanta, GA 30309', image: null }
-  ];
+const Home = () => {
+  const [featuredListings, setFeaturedListings] = useState([]);
+  const [selectedHouse, setSelectedHouse] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  
+  const API_URL = 'https://mbf-server-zt5i.onrender.com';
+
+  useEffect(() => {
+    const fetchListings = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        
+        const response = await fetch(`${API_URL}/api/houses`);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        // Validate listings
+        const validListings = Array.isArray(data) 
+          ? data.filter(listing => {
+              const isValid = listing && 
+                            typeof listing === 'object' && 
+                            listing._id &&
+                            listing.name !== undefined;
+              return isValid;
+            })
+          : [];
+        
+        setFeaturedListings(validListings);
+        
+      } catch (error) {
+        console.error('Error fetching listings:', error);
+        setError(`Failed to load listings: ${error.message}`);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchListings();
+  }, []);
+
+  const handleHouseClick = (house) => {
+    if (house && house._id) {
+      setSelectedHouse(house);
+    }
+  };
+
+  const closeMod = () => {
+    setSelectedHouse(null);
+  };
 
   return (
     <>
-      <section className="top">
-        <div className="top-content">
-          <SearchBox />
-          <Slideshow />
-        </div>
-      </section>
-
+      <SlideShow />
+      
+      {/* Add SearchBox below the slideshow */}
+      <SearchBox />
+      
       <section className="featured-section">
         <h2 className="section-title">Featured Listings</h2>
-        <div className="listings-grid">
-          {featuredListings.map((listing) => (
-            <Listing key={listing.id} listing={listing} />
-          ))}
-        </div>
-        <SeeMore />
+        
+        {error && (
+          <p style={{textAlign: 'center', color: '#ff6b6b'}}>{error}</p>
+        )}
+        
+        {loading ? (
+          <p style={{textAlign: 'center', color: '#f0a500'}}>Loading...</p>
+        ) : (
+          <div className="listings-grid">
+            {featuredListings.length > 0 ? (
+              featuredListings.map((listing) => (
+                <Listing 
+                  key={listing._id}
+                  listing={listing} 
+                  onClick={handleHouseClick}
+                />
+              ))
+            ) : (
+              !error && <p style={{textAlign: 'center', color: '#666'}}>No listings available.</p>
+            )}
+          </div>
+        )}
       </section>
+
+      {selectedHouse && (
+        <HouseMod house={selectedHouse} onClose={closeMod} />
+      )}
     </>
   );
 };
