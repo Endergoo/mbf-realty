@@ -1,12 +1,12 @@
 import React from 'react';
 import './../css/HouseMod.css';
 
-const HouseMod = ({ house, onClose }) => {
+const HouseMod = ({ house, onClose }) => 
+{
   if (!house) return null;
 
-  const API_URL = 'https://mbf-server-zt5i.onrender.com'; // Use your actual URL
+  const API_URL = 'https://mbf-server-zt5i.onrender.com';
 
-  // Safe property access with fallbacks
   const imageUrl = house?.main_image && house.main_image !== 'coming-soon.jpg'
     ? `${API_URL}/images/${house.main_image}`
     : 'https://via.placeholder.com/800x500/ddd/666?text=Coming+Soon';

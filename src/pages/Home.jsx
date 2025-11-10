@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import SlideShow from './../components/SlideShow';
-import SearchBox from './../components/SearchBox'; // Add this import
+import SearchBox from './../components/SearchBox'; 
 import Listing from './../components/Listing';
 import HouseMod from './../components/HouseMod';
 
@@ -63,8 +63,6 @@ const Home = () => {
   return (
     <>
       <SlideShow />
-      
-      {/* Add SearchBox below the slideshow */}
       <SearchBox />
       
       <section className="featured-section">

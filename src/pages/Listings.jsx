@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Listing from './../components/Listing';
 import HouseMod from './../components/HouseMod';
-import SideSearch from './../components/SideSearch'; // Import the SideSearch
+import SideSearch from './../components/SideSearch';
 import './../css/Listings.css';
 
 const Listings = () => { 
@@ -194,17 +194,14 @@ const Listings = () => {
     <div className="listings-page">
       <h1>All Properties</h1>
       
-      {/* Use your SideSearch component */}
       <SideSearch onApplyFilters={handleApplyFilters} />
       
-      {/* Clear filters button */}
       {(filters.location || filters.price || filters.beds || filters.baths) && (
         <button onClick={clearFilters} className="clear-filters-btn">
           Clear All Filters
         </button>
       )}
       
-      {/* Results count */}
       <div className="results-count">
         Showing {filteredListings.length} of {listings.length} properties
       </div>

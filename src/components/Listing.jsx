@@ -1,8 +1,8 @@
 import React from 'react';
 import './../css/Listing.css';
 
-const Listing = ({ listing, onClick }) => {
-  // Handle multiple possible data structures
+const Listing = ({ listing, onClick }) => 
+{
   const price = listing?.price ? `$${listing.price.toLocaleString()}` : 
                 listing?.listPrice ? `$${listing.listPrice.toLocaleString()}` : 'Price Upon Request';
   
