@@ -4,7 +4,8 @@ import HouseMod from './../components/HouseMod';
 import SideSearch from './../components/SideSearch';
 import './../css/Listings.css';
 
-const Listings = () => { 
+const Listings = () => 
+{ 
   const [listings, setListings] = useState([]);
   const [filteredListings, setFilteredListings] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -22,7 +23,8 @@ const Listings = () => {
   const API_URL = 'https://mbf-server-zt5i.onrender.com';
 
   // Fetch all listings
-  useEffect(() => {
+  useEffect(() => 
+  {
     const fetchListings = async () => {
       try {
         setLoading(true);
@@ -30,7 +32,8 @@ const Listings = () => {
         
         const response = await fetch(`${API_URL}/api/houses`);
         
-        if (!response.ok) {
+        if (!response.ok) 
+        {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         
@@ -44,10 +47,14 @@ const Listings = () => {
         setListings(validListings);
         setFilteredListings(validListings);
         
-      } catch (error) {
+      } 
+      catch (error) 
+      {
         console.error('Error fetching listings:', error);
         setError('Failed to load listings. Please try again later.');
-      } finally {
+      } 
+      finally 
+      {
         setLoading(false);
       }
     };
@@ -56,11 +63,13 @@ const Listings = () => {
   }, []);
 
   // Handle filter application
-  const handleApplyFilters = () => {
+  const handleApplyFilters = () => 
+  {
     let filtered = listings;
 
     // Filter by location (address or name)
-    if (filters.location) {
+    if (filters.location) 
+    {
       filtered = filtered.filter(listing => 
         listing.name?.toLowerCase().includes(filters.location.toLowerCase()) ||
         listing.address?.toLowerCase().includes(filters.location.toLowerCase())
@@ -68,10 +77,13 @@ const Listings = () => {
     }
 
     // Filter by price range
-    if (filters.price) {
-      filtered = filtered.filter(listing => {
+    if (filters.price) 
+    {
+      filtered = filtered.filter(listing => 
+      {
         const listingPrice = listing.price || 0;
-        switch (filters.price) {
+        switch (filters.price) 
+        {
           case '0-200000':
             return listingPrice <= 200000;
           case '200000-400000':
@@ -85,13 +97,15 @@ const Listings = () => {
     }
 
     // Filter by beds (minimum)
-    if (filters.beds) {
+    if (filters.beds) 
+    {
       const minBeds = parseInt(filters.beds);
       filtered = filtered.filter(listing => listing.bedrooms >= minBeds);
     }
 
     // Filter by baths (minimum)
-    if (filters.baths) {
+    if (filters.baths) 
+    {
       const minBaths = parseInt(filters.baths);
       filtered = filtered.filter(listing => listing.bathrooms >= minBaths);
     }
@@ -100,7 +114,8 @@ const Listings = () => {
   };
 
   // Update filters when inputs change
-  const handleFilterChange = () => {
+  const handleFilterChange = () => 
+  {
     const location = document.getElementById('location-filter')?.value || '';
     const price = document.getElementById('price-filter')?.value || '';
     const beds = document.getElementById('beds-filter')?.value || '';
@@ -109,17 +124,21 @@ const Listings = () => {
     setFilters({ location, price, beds, baths });
   };
 
-  const handleHouseClick = (house) => {
-    if (house && house._id) {
+  const handleHouseClick = (house) => 
+  {
+    if (house && house._id) 
+    {
       setSelectedHouse(house);
     }
   };
 
-  const closeModal = () => {
+  const closeModal = () => 
+  {
     setSelectedHouse(null);
   };
 
-  const clearFilters = () => {
+  const clearFilters = () => 
+  {
     // Reset all filter inputs
     const locationInput = document.getElementById('location-filter');
     const priceSelect = document.getElementById('price-filter');
@@ -136,43 +155,53 @@ const Listings = () => {
   };
 
   // Add event listeners to filter inputs
-  useEffect(() => {
+  useEffect(() => 
+  {
     const locationInput = document.getElementById('location-filter');
     const priceSelect = document.getElementById('price-filter');
     const bedsSelect = document.getElementById('beds-filter');
     const bathsSelect = document.getElementById('baths-filter');
     
-    if (locationInput) {
+    if (locationInput) 
+    {
       locationInput.addEventListener('input', handleFilterChange);
     }
-    if (priceSelect) {
+    if (priceSelect) 
+    {
       priceSelect.addEventListener('change', handleFilterChange);
     }
-    if (bedsSelect) {
+    if (bedsSelect) 
+    {
       bedsSelect.addEventListener('change', handleFilterChange);
     }
-    if (bathsSelect) {
+    if (bathsSelect) 
+    {
       bathsSelect.addEventListener('change', handleFilterChange);
     }
     
-    // Cleanup event listeners
-    return () => {
-      if (locationInput) {
+    return () => 
+    {
+      if (locationInput) 
+      {
         locationInput.removeEventListener('input', handleFilterChange);
       }
-      if (priceSelect) {
+      if (priceSelect) 
+      {
         priceSelect.removeEventListener('change', handleFilterChange);
       }
-      if (bedsSelect) {
+      if (bedsSelect) 
+      {
         bedsSelect.removeEventListener('change', handleFilterChange);
       }
-      if (bathsSelect) {
+      if (bathsSelect) 
+      {
         bathsSelect.removeEventListener('change', handleFilterChange);
       }
     };
   }, []);
 
-  if (loading) {
+  if (loading) 
+  {
     return (
       <div className="listings-page">
         <h1>All Properties</h1>
@@ -181,7 +210,8 @@ const Listings = () => {
     );
   }
 
-  if (error) {
+  if (error) 
+  {
     return (
       <div className="listings-page">
         <h1>All Properties</h1>

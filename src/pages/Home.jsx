@@ -4,7 +4,8 @@ import SearchBox from './../components/SearchBox';
 import Listing from './../components/Listing';
 import HouseMod from './../components/HouseMod';
 
-const Home = () => {
+const Home = () => 
+  {
   const [featuredListings, setFeaturedListings] = useState([]);
   const [selectedHouse, setSelectedHouse] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -12,15 +13,19 @@ const Home = () => {
   
   const API_URL = 'https://mbf-server-zt5i.onrender.com';
 
-  useEffect(() => {
-    const fetchListings = async () => {
-      try {
+  useEffect(() => 
+  {
+    const fetchListings = async () => 
+    {
+      try 
+      {
         setLoading(true);
         setError(null);
         
         const response = await fetch(`${API_URL}/api/houses`);
         
-        if (!response.ok) {
+        if (!response.ok) 
+        {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         
@@ -28,7 +33,8 @@ const Home = () => {
         
         // Validate listings
         const validListings = Array.isArray(data) 
-          ? data.filter(listing => {
+          ? data.filter(listing => 
+          {
               const isValid = listing && 
                             typeof listing === 'object' && 
                             listing._id &&
@@ -39,10 +45,14 @@ const Home = () => {
         
         setFeaturedListings(validListings);
         
-      } catch (error) {
+      } 
+      catch (error) 
+      {
         console.error('Error fetching listings:', error);
         setError(`Failed to load listings: ${error.message}`);
-      } finally {
+      }
+      finally 
+      {
         setLoading(false);
       }
     };
@@ -50,13 +60,16 @@ const Home = () => {
     fetchListings();
   }, []);
 
-  const handleHouseClick = (house) => {
-    if (house && house._id) {
+  const handleHouseClick = (house) => 
+  {
+    if (house && house._id) 
+    {
       setSelectedHouse(house);
     }
   };
 
-  const closeMod = () => {
+  const closeMod = () => 
+  {
     setSelectedHouse(null);
   };
 

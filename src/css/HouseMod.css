@@ -1,4 +1,5 @@
-.mod-overlay {
+.mod-overlay 
+{
     position: fixed;
     top: 0;
     left: 0;
@@ -13,16 +14,20 @@
     animation: fadeIn 0.3s ease;
   }
   
-  @keyframes fadeIn {
-    from {
+  @keyframes fadeIn 
+  {
+    from 
+    {
       opacity: 0;
     }
-    to {
+    to 
+    {
       opacity: 1;
     }
   }
   
-  .mod-content {
+  .mod-content 
+  {
     background: #2d2d2d;
     border-radius: 15px;
     max-width: 900px;
@@ -34,18 +39,22 @@
     box-shadow: 0 10px 50px rgba(240, 165, 0, 0.3);
   }
   
-  @keyframes slideUp {
-    from {
+  @keyframes slideUp 
+  {
+    from 
+    {
       transform: translateY(50px);
       opacity: 0;
     }
-    to {
+    to 
+    {
       transform: translateY(0);
       opacity: 1;
     }
   }
   
-  .mod-close {
+  .mod-close 
+  {
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -66,36 +75,42 @@
     font-weight: bold;
   }
   
-  .mod-close:hover {
+  .mod-close:hover 
+  {
     background: #fff;
     transform: rotate(90deg);
   }
   
-  .mod-image {
+  .mod-image 
+  {
     width: 100%;
     height: 400px;
     overflow: hidden;
     border-radius: 15px 15px 0 0;
   }
   
-  .mod-image img {
+  .mod-image img 
+  {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
   
-  .mod-details {
+  .mod-details 
+  {
     padding: 2rem;
   }
   
-  .mod-title {
+  .mod-title 
+  {
     color: #f0a500;
     font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 1.5rem;
   }
   
-  .mod-specs {
+  .mod-specs 
+  {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
@@ -105,11 +120,13 @@
     border-radius: 10px;
   }
   
-  .spec {
+  .spec 
+  {
     text-align: center;
   }
   
-  .spec-label {
+  .spec-label 
+  {
     display: block;
     color: #f0a500;
     font-size: 0.9rem;
@@ -118,31 +135,36 @@
     letter-spacing: 1px;
   }
   
-  .spec-value {
+  .spec-value 
+  {
     display: block;
     color: #fff;
     font-size: 1.5rem;
     font-weight: bold;
   }
   
-  .mod-section {
+  .mod-section 
+  {
     margin-bottom: 2rem;
   }
   
-  .mod-section h3 {
+  .mod-section h3 
+  {
     color: #f0a500;
     font-size: 1.5rem;
     margin-bottom: 1rem;
   }
   
-  .features-list {
+  .features-list 
+  {
     list-style: none;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem;
   }
   
-  .features-list li {
+  .features-list li 
+  {
     color: #ccc;
     padding: 0.75rem 1rem;
     background: rgba(240, 165, 0, 0.1);
@@ -151,62 +173,76 @@
     font-size: 1rem;
   }
   
-  /* Scrollbar styling for modal content */
-  .mod-content::-webkit-scrollbar {
+  .mod-content::-webkit-scrollbar 
+  {
     width: 8px;
   }
   
-  .mod-content::-webkit-scrollbar-track {
+  .mod-content::-webkit-scrollbar-track 
+  {
     background: #1a1a1a;
   }
   
-  .mod-content::-webkit-scrollbar-thumb {
+  .mod-content::-webkit-scrollbar-thumb 
+  {
     background: #f0a500;
     border-radius: 4px;
   }
   
-  .mod-content::-webkit-scrollbar-thumb:hover {
+  .mod-content::-webkit-scrollbar-thumb:hover 
+  {
     background: #ffb733;
   }
   
-  @media (max-width: 768px) {
-    .mod-overlay {
+  @media (max-width: 768px) 
+  {
+    .mod-overlay 
+    {
       padding: 1rem;
     }
   
-    .mod-image {
+    .mod-image 
+    {
       height: 250px;
     }
   
-    .mod-details {
+    .mod-details 
+    {
       padding: 1.5rem;
     }
   
-    .mod-title {
+    .mod-title 
+    {
       font-size: 2rem;
     }
   
-    .mod-specs {
+    .mod-specs 
+    {
       grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
       padding: 1rem;
     }
   
-    .spec-value {
+    .spec-value 
+    {
       font-size: 1.2rem;
     }
   
-    .features-list {
+    .features-list 
+    {
       grid-template-columns: 1fr;
     }
   }
   
-  @media (max-width: 480px) {
-    .mod-specs {
+  @media (max-width: 480px) 
+  {
+    .mod-specs 
+    {
       grid-template-columns: 1fr;
     }
   
-    .mod-title {
+    .mod-title 
+    {
       font-size: 1.5rem;
     }
   }
