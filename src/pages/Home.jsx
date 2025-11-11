@@ -40,7 +40,7 @@ const Home = () =>
                             listing._id &&
                             listing.name !== undefined;
               return isValid;
-            })
+          })
           : [];
         
         setFeaturedListings(validListings);
