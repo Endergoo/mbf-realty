@@ -4,7 +4,7 @@ import './../css/Listing.css';
 const Listing = ({ listing, onClick }) => 
 {
   const price = listing?.price ? `$${listing.price.toLocaleString()}` : 
-                listing?.listPrice ? `$${listing.listPrice.toLocaleString()}` : 'Price Upon Request';
+                listing?.listPrice ? `$${listing.listPrice.toLocaleString()}` : 'Price Coming Soon';
   
   const beds = listing?.beds ?? listing?.bedrooms ?? 'N/A';
   const baths = listing?.baths ?? listing?.bathrooms ?? 'N/A';
