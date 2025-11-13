@@ -25,8 +25,10 @@ const Listings = () =>
   // Fetch all listings
   useEffect(() => 
   {
-    const fetchListings = async () => {
-      try {
+    const fetchListings = async () => 
+      {
+      try 
+      {
         setLoading(true);
         setError(null);
         
