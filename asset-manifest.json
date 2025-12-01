@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/mbf-realty/static/css/main.c2a9d956.css",
-    "main.js": "/mbf-realty/static/js/main.684802d1.js",
+    "main.css": "/mbf-realty/static/css/main.26f7e9ae.css",
+    "main.js": "/mbf-realty/static/js/main.f40a6f47.js",
     "static/media/MBF.png": "/mbf-realty/static/media/MBF.127c2bae855c68957a8b.png",
     "index.html": "/mbf-realty/index.html",
-    "main.c2a9d956.css.map": "/mbf-realty/static/css/main.c2a9d956.css.map",
-    "main.684802d1.js.map": "/mbf-realty/static/js/main.684802d1.js.map"
+    "main.26f7e9ae.css.map": "/mbf-realty/static/css/main.26f7e9ae.css.map",
+    "main.f40a6f47.js.map": "/mbf-realty/static/js/main.f40a6f47.js.map"
   },
   "entrypoints": [
-    "static/css/main.c2a9d956.css",
-    "static/js/main.684802d1.js"
+    "static/css/main.26f7e9ae.css",
+    "static/js/main.f40a6f47.js"
   ]
 }
