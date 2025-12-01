@@ -72,13 +72,13 @@
 
 .edit-btn 
 {
-  background-color: #007bff;
+  background-color: #f3d00a;
   color: white;
 }
 
 .edit-btn:hover 
 {
-  background-color: #0056b3;
+  background-color: #f3d00a;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
 }
