@@ -36,40 +36,29 @@ const Listings = () =>
   const API_URL = 'https://mbf-server-zt5i.onrender.com';
 
   // Client-side validation
-  const validateForm = () => 
-  {
+  const validateForm = () => {
     const errors = {};
     
-    if (!formData.name || formData.name.length < 3 || formData.name.length > 100) 
-    {
+    if (!formData.name || formData.name.length < 3 || formData.name.length > 100) {
       errors.name = 'Name must be between 3 and 100 characters';
     }
     
     const size = parseInt(formData.size);
-    if (!formData.size || size < 100 || size > 10000) 
-    {
-      errors.size = 'Size must be between 100 and 10000 sq ft';
+    if (!formData.size || size < 0) {
+      errors.size = 'Size must be 0 or greater';
     }
     
     const bedrooms = parseInt(formData.bedrooms);
-    if (!formData.bedrooms || bedrooms < 1 || bedrooms > 20 || !Number.isInteger(bedrooms)) 
-    {
-      errors.bedrooms = 'Bedrooms must be a whole number between 1 and 20';
+    if (formData.bedrooms === '' || bedrooms < 0 || !Number.isInteger(bedrooms)) {
+      errors.bedrooms = 'Bedrooms must be a whole number 0 or greater';
     }
     
     const bathrooms = parseFloat(formData.bathrooms);
-    if (!formData.bathrooms || bathrooms < 1 || bathrooms > 20) 
-    {
-      errors.bathrooms = 'Bathrooms must be between 1 and 20';
+    if (formData.bathrooms === '' || bathrooms < 0) {
+      errors.bathrooms = 'Bathrooms must be 0 or greater';
     }
     
-    if (!formData.features || formData.features.trim().length === 0) 
-    {
-      errors.features = 'At least one feature is required';
-    }
-    
-    if (!showEditForm && !formData.main_image) 
-    {
+    if (!showEditForm && !formData.main_image) {
       errors.main_image = 'Image is required';
     }
     
@@ -258,7 +247,7 @@ const Listings = () =>
       size: house.size.toString(),
       bedrooms: house.bedrooms.toString(),
       bathrooms: house.bathrooms.toString(),
-      features: house.features.join(', '),
+      features: Array.isArray(house.features) ? house.features.join(', ') : house.features,
       main_image: null
     });
     setValidationErrors({});
@@ -288,24 +277,17 @@ const Listings = () =>
       formDataToSend.append('size', formData.size);
       formDataToSend.append('bedrooms', formData.bedrooms);
       formDataToSend.append('bathrooms', formData.bathrooms);
-      
-      const featuresArray = formData.features
-        .split(',')
-        .map(f => f.trim())
-        .filter(f => f.length > 0);
-      
-      formDataToSend.append('features', JSON.stringify(featuresArray));
-      formDataToSend.append('main_image', formData.main_image);
+      formDataToSend.append('features', formData.features); // Send as comma-separated string
+      formDataToSend.append('img', formData.main_image); // Changed from 'main_image' to 'img'
 
       const response = await fetch(`${API_URL}/api/houses`, {
         method: 'POST',
         body: formDataToSend
       });
 
-      const result = await response.json();
-
-      if (response.ok && result.success) 
+      if (response.ok) 
       {
+        const result = await response.json();
         setSubmitStatus({ 
           message: 'House added successfully!', 
           type: 'success' 
@@ -322,8 +304,9 @@ const Listings = () =>
       } 
       else 
       {
+        const errorText = await response.text();
         setSubmitStatus({ 
-          message: result.message || 'Failed to add house', 
+          message: errorText || 'Failed to add house', 
           type: 'error' 
         });
       }
@@ -355,20 +338,15 @@ const Listings = () =>
     try 
     {
       const formDataToSend = new FormData();
+      formDataToSend.append('_id', editingHouse._id); // Include _id for Joi validation
       formDataToSend.append('name', formData.name);
       formDataToSend.append('size', formData.size);
       formDataToSend.append('bedrooms', formData.bedrooms);
       formDataToSend.append('bathrooms', formData.bathrooms);
-      
-      const featuresArray = formData.features
-        .split(',')
-        .map(f => f.trim())
-        .filter(f => f.length > 0);
-      
-      formDataToSend.append('features', JSON.stringify(featuresArray));
+      formDataToSend.append('features', formData.features); // Send as comma-separated string
       
       if (formData.main_image) {
-        formDataToSend.append('main_image', formData.main_image);
+        formDataToSend.append('img', formData.main_image); // Changed from 'main_image' to 'img'
       }
 
       const response = await fetch(`${API_URL}/api/houses/${editingHouse._id}`, {
@@ -376,10 +354,9 @@ const Listings = () =>
         body: formDataToSend
       });
 
-      const result = await response.json();
-
-      if (response.ok && result.success) 
+      if (response.ok) 
       {
+        const result = await response.json();
         setSubmitStatus({ 
           message: 'House updated successfully!', 
           type: 'success' 
@@ -397,8 +374,9 @@ const Listings = () =>
       } 
       else 
       {
+        const errorText = await response.text();
         setSubmitStatus({ 
-          message: result.message || 'Failed to update house', 
+          message: errorText || 'Failed to update house', 
           type: 'error' 
         });
       }
@@ -424,9 +402,7 @@ const Listings = () =>
         method: 'DELETE'
       });
 
-      const result = await response.json();
-
-      if (response.ok && result.success) {
+      if (response.ok) {
         setSubmitStatus({ 
           message: 'House deleted successfully!', 
           type: 'success' 
@@ -443,8 +419,9 @@ const Listings = () =>
           setSubmitStatus({ message: '', type: '' });
         }, 3000);
       } else {
+        const errorText = await response.text();
         setSubmitStatus({ 
-          message: result.message || 'Failed to delete house', 
+          message: errorText || 'Failed to delete house', 
           type: 'error' 
         });
       }
